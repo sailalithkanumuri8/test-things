@@ -1,0 +1,22 @@
+{
+  "loki": {
+    "hostname": "localhost",
+    "port": "3100"
+  },
+  "monitoring": {
+    "checkIntervalMs": 30000,
+    "reportIntervalMs": 300000,
+    "alertThresholds": {
+      "maxErrorsPerMinute": 5,
+      "maxResponseTimeMs": 1000,
+      "maxDownThings": 1
+    }
+  },
+  "crashDetection": {
+    "restartThreshold": 5,
+    "restartWindowMs": 300000,
+    "enableProcessMonitoring": true,
+    "enableUncaughtExceptionHandling": true,
+    "enableUnhandledRejectionHandling": true
+  }
+}

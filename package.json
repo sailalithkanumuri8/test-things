@@ -6,16 +6,25 @@
         "test": "./scripts/runTests.sh",
         "format": "prettier --write . && npm run format --silent --workspaces --if-present",
         "lint": "npm run lint --silent --workspaces --if-present",
-        "lint:fix": "npm run lint:fix --silent --workspaces --if-present"
+        "lint:fix": "npm run lint:fix --silent --workspaces --if-present",
+        "monitor": "./monitor.sh",
+        "monitor:start": "./monitor.sh start",
+        "monitor:report": "./monitor.sh report",
+        "monitor:alerts": "./monitor.sh alerts",
+        "monitor:dashboard": "./monitor.sh dashboard",
+        "monitor:setup": "./scripts/setup-monitoring.sh"
     },
     "keywords": [
         "wot",
         "thing",
-        "iot"
+        "iot",
+        "monitoring",
+        "crash-detection"
     ],
     "workspaces": [
         "./mashups/*",
-        "./things/*/*/*"
+        "./things/*/*/*",
+        "./util"
     ],
     "author": "Eclipse Thingweb <thingweb-dev@eclipse.org> (https://thingweb.io/)",
     "license": "EPL-2.0 OR W3C-20150513",
