@@ -12,6 +12,9 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR W3C-20150513
  ********************************************************************************/
+// Add OpenTelemetry tracing initialization as the very first line
+require('../../../../tracing');
+
 const express = require("express");
 const fs = require("fs");
 const path = require("path");

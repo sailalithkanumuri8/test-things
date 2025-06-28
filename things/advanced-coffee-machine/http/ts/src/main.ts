@@ -13,6 +13,9 @@
  * SPDX-License-Identifier: EPL-2.0 OR W3C-20150513
  ********************************************************************************/
 
+// Add OpenTelemetry tracing initialization
+require('../../../../../tracing');
+
 // This is an example of Web of Things producer ("server" mode) Thing script.
 // It considers a fictional smart coffee machine in order to demonstrate the capabilities of Web of Things.
 // An accompanying tutorial is available at http://www.thingweb.io/smart-coffee-machine.html.
