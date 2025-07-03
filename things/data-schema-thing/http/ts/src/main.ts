@@ -13,6 +13,9 @@
  * SPDX-License-Identifier: EPL-2.0 OR W3C-20150513
  ********************************************************************************/
 
+// Add OpenTelemetry tracing initialization
+require('../../../../../tracing');
+
 import WoT from "wot-typescript-definitions";
 import fs from "fs";
 import path from "path";

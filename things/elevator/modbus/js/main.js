@@ -13,6 +13,9 @@
  * SPDX-License-Identifier: EPL-2.0 OR W3C-20150513
  ********************************************************************************/
 
+// Add OpenTelemetry tracing initialization
+require('../../../../tracing');
+
 const { ServerTCP } = require("modbus-serial");
 const fs = require("fs");
 const path = require("path");

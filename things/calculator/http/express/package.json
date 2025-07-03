@@ -18,6 +18,10 @@
     "author": "Eclipse Thingweb <thingweb-dev@eclipse.org> (https://thingweb.io/)",
     "license": "EPL-2.0 OR W3C-20150513",
     "dependencies": {
+        "@opentelemetry/api": "^1.9.0",
+        "@opentelemetry/auto-instrumentations-node": "^0.60.1",
+        "@opentelemetry/exporter-trace-otlp-http": "^0.202.0",
+        "@opentelemetry/sdk-node": "^0.202.0",
         "body-parser": "^1.20.2",
         "cbor": "^9.0.1",
         "dotenv": "^16.3.1",
