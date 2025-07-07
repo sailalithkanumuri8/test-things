@@ -1,4 +1,24 @@
 services:
+  # Loki-to-Jaeger integration service
+  loki-jaeger-integration:
+    build:
+      context: .
+      dockerfile: Dockerfile.loki-jaeger-integration
+    environment:
+      - LOKI_URL=http://host.docker.internal:3100
+      - JAEGER_OTLP_ENDPOINT=http://host.docker.internal:4318
+      - POLLING_INTERVAL=10000
+    networks:
+      - things_network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 100M
+        reservations:
+          cpus: "0.05"
+          memory: 50M
   coap-calculator-simple:
     image: thingweb/test-things-coap-calculator-simple
     labels:

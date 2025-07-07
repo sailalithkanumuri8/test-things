@@ -1,0 +1,27 @@
+{
+  "name": "loki-jaeger-integration",
+  "version": "1.0.0",
+  "description": "Service that fetches logs from Loki and creates traces in Jaeger",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "loki",
+    "jaeger",
+    "tracing",
+    "logging",
+    "observability"
+  ],
+  "author": "Eclipse Thingweb",
+  "license": "EPL-2.0 OR W3C-20150513",
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/sdk-node": "^0.202.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.202.0",
+    "@opentelemetry/resources": "^1.25.0",
+    "@opentelemetry/semantic-conventions": "^1.25.0",
+    "axios": "^1.6.0"
+  }
+} 

@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # Loki for log aggregation
+  loki:
+    image: grafana/loki:2.9.2
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - loki-data:/loki
+    networks:
+      - things_network
+    environment:
+      - LOKI_HOSTNAME=loki
+      - LOKI_PORT=3100
+
+  # Jaeger for distributed tracing
+  jaeger:
+    image: jaegertracing/all-in-one:1.50
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "4317:4317"    # OTLP gRPC
+      - "4318:4318"    # OTLP HTTP
+      - "14250:14250"  # Jaeger gRPC
+      - "14268:14268"  # Jaeger HTTP
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
+    networks:
+      - things_network
+
+  # Loki-to-Jaeger integration service
+  loki-jaeger-integration:
+    build:
+      context: .
+      dockerfile: Dockerfile.loki-jaeger-integration
+    depends_on:
+      - loki
+      - jaeger
+    environment:
+      - LOKI_URL=http://loki:3100
+      - JAEGER_ENDPOINT=http://jaeger:14268
+      - JAEGER_OTLP_ENDPOINT=http://jaeger:4318
+      - POLLING_INTERVAL=10000
+    networks:
+      - things_network
+    restart: unless-stopped
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:10.2.0
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - loki
+      - jaeger
+    networks:
+      - things_network
+
+volumes:
+  loki-data:
+  grafana-data:
+
+networks:
+  things_network:
+    external: true 
