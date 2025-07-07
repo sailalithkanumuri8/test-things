@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  # Jaeger All-in-One (Simple tracing backend)
+  jaeger:
+    image: jaegertracing/all-in-one:1.22
+    container_name: jaeger
+    ports:
+      - "16686:16686"  # UI
+      - "14268:14268"  # HTTP collector
+    restart: unless-stopped 
